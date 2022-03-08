@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style: none;
+}
+
+body {
+  padding-top: 40px;
+  background-color: #f8f9fa;
+}
+
+.nav_box {
+  text-align: center;
+  font-size: 18px;
+  height: 60px;
+  line-height: 60px;
+  background-color: #f8f9fa;
+}
+.nav_box .nav_item {
+  display: inline-block;
+  margin-right: 30px;
+  cursor: pointer;
+  color: #999;
+}
+.nav_box .nav_item:first-of-type {
+  color: #333;
+  font-weight: bold;
+}
+.nav_box .nav_item:hover {
+  color: #333;
+}
+
+.head_img {
+  display: block;
+  margin: 0 auto 40px;
+  width: 300px;
+  border-radius: 6px;
+}
+
+.box {
+  margin: 0 auto 20px;
+  box-sizing: border-box;
+  padding: 28px;
+  width: 40%;
+  width: 70%;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 3px 3px 2px #999;;
+}
+.box .title {
+  margin-bottom: 10px;
+  color: #333;
+}
+.box .list_item {
+  margin-top: 6px;
+}
+.box .list_item .name {
+  color: #666;
+}
+.box .list_item .value {
+  margin-left: 4px;
+  color: #333;
+}
+
+.box .content_item {
+  margin-top: 10px;
+}
+.box .content_item .link_item {
+  display: block;
+  
+}
+.box .content_item .thum_img {
+  margin-top: 6px;
+  width: 350px;
+}
+.box .content_item .desc {
+  margin-top: 6px;
+}

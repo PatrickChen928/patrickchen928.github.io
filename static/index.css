@@ -66,6 +66,8 @@ body {
 
 .box .content_item {
   margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 .box .content_item .link_item {
   display: block;
@@ -73,7 +75,7 @@ body {
 }
 .box .content_item .thum_img {
   margin-top: 6px;
-  width: 350px;
+  width: 50%;
 }
 .box .content_item .desc {
   margin-top: 6px;

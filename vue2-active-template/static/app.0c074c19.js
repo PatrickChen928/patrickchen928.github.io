@@ -189,7 +189,7 @@
       b = v.exports;
     r["a"].use(s["a"]);
     const g = [{ path: "/", name: "Home", component: b }],
-      x = new s["a"]({ mode: "history", base: "/", routes: g });
+      x = new s["a"]({ mode: "hash", base: "/", routes: g });
     var y = x;
     n("4dcb");
     (r["a"].config.productionTip = !1),
@@ -207,4 +207,3 @@
     o.a;
   },
 });
-//# sourceMappingURL=app.0c074c19.js.map

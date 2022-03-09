@@ -175,8 +175,9 @@
             (e = "<div> " + e + " </div>"), (o.template = e);
             const u = r["a"].extend(o);
             let a = new u().$mount().$el;
-            this.handleCss(n),
-            document.getElementById("showBox").innerHTML = a;
+            this.handleCss(n);
+            document.getElementById("showBox").innerHTML = '';
+            document.getElementById("showBox").append(a);
           },
           handleCss(e) {
             let t = document.createElement("style");

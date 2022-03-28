@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>json2ts</title>
   <link rel="stylesheet" href="../static/codemirror.css">
-  <script src="./0.0.3/index.umd.min.js"></script>
+  <script src="./0.0.4/index.umd.min.js"></script>
   <script src="../static/codemirror.js"></script>
   <script src="../static/javascript.js"></script>
   <style>
@@ -51,13 +51,14 @@
       justify-content: space-between;
       padding: 0 20px;
       flex: 1;
+      overflow: hidden;
     }
     #input, #output {
       min-height: 60vh;
       padding: 6px;
       font-size: 18px;
       width: 100%;
-      /* flex: 1; */
+      flex: 1;
       border: 1px solid rgb(39, 147, 236);
       border-radius: 4px;
     }
@@ -79,6 +80,16 @@
       line-height: 28px;
       border: 1px solid rgb(39, 147, 236);
       border-radius: 4px;
+    }
+    .CodeMirror {
+        border: 1px solid #eee;
+        height: auto;
+    }
+
+    .CodeMirror-scroll {
+        height: auto;
+        overflow-y: hidden;
+        overflow-x: auto;
     }
   </style>
 </head>

@@ -5,7 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>json2ts</title>
+  <link rel="stylesheet" href="../static/codemirror.css">
   <script src="./0.0.1/index.umd.min.js"></script>
+  <script src="../static/codemirror.js"></script>
+  <script src="../static/javascript.js"></script>
   <style>
     * {
       margin: 0;
@@ -48,6 +51,15 @@
       justify-content: space-between;
       padding: 0 20px;
       flex: 1;
+    }
+    #input, #output {
+      min-height: 60vh;
+      padding: 6px;
+      font-size: 18px;
+      width: 100%;
+      /* flex: 1; */
+      border: 1px solid rgb(39, 147, 236);
+      border-radius: 4px;
     }
     textarea {
       padding: 6px;
@@ -101,11 +113,11 @@
   </div>
   <div class="box">
     <div class="content left-code">
-      <textarea id="input" cols="30" rows="40">{ name: "apha", age: 18, interest: [ 'swim', 'football', 22 ] }
-      </textarea>
+      <div id="input" cols="30" rows="40">
+      </div>
     </div>
     <div class="content right-res">
-      <textarea id="output" cols="30" rows="40"></textarea>
+      <div id="output" cols="30" rows="40"></div>
     </div>
   </div>
 
@@ -122,9 +134,33 @@
     startBtn.onclick = function() {
       start();
     }
+
+    const inputCodeMirror = CodeMirror(inputEle, {
+      lineNumbers: true,
+      matchBrackets: true,
+      autofocus: true,
+      smartIndent: true,
+      value:`{ 
+  name: "apha", 
+  age: 18, 
+  interest: [ 'swim', 'football', 22 ] 
+}`,
+      mode: "text/typescript"
+    });
+    const outputcodeMirror = CodeMirror(outputEle, {
+      matchBrackets: true,
+      lineNumbers: true,
+      smartIndent: true,
+      value: `type Result$0Type = {
+  name: string
+  age: number
+  interest: Array< string | number >
+}`,
+      mode: "text/typescript"
+    });
     function start() {
-      const inputVal = inputEle.value;
-      outputEle.value = json2ts.json2ts(inputVal, {
+      const inputVal = inputCodeMirror.getValue();
+      const result = json2ts.json2ts(inputVal, {
         spiltType: spiltTypeEle.checked,
         parseArray: parseArrayEle.checked,
         required: requiredEle.checked,
@@ -132,6 +168,7 @@
         typePrefix: typePrefixEle.value,
         typeSuffix: typeSuffixEle.value
       });
+      outputcodeMirror.setValue(result);
     }
   </script>
 </body>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>json2ts</title>
   <link rel="stylesheet" href="../static/codemirror.css">
-  <script src="./0.0.4/index.umd.min.js"></script>
+  <script src="./0.0.5/index.umd.min.js"></script>
   <script src="../static/codemirror.js"></script>
   <script src="../static/javascript.js"></script>
   <style>
@@ -96,7 +96,7 @@
 <body>
   <a class="top" href="https://github.com/ChpShy/json2ts" target="_blank">Github</a>
   <div class="opt-box">
-    <label for="semi">
+    <label for="spiltType">
       <input type="checkbox" id="spiltType" checked>
       <span>分离对象</span>
     </label>
@@ -120,6 +120,10 @@
       <span>后缀</span>
       <input type="text" id="suffix" value="Type">
     </div>
+    <div class="form-item">
+      <span>缩进</span>
+      <input type="text" id="indent" value="2">
+    </div>
     <button id="start" class="start">运行</button>
   </div>
   <div class="box">
@@ -142,6 +146,7 @@
     const semicolonEle = document.getElementById('semicolon');
     const typePrefixEle = document.getElementById('prefix');
     const typeSuffixEle = document.getElementById('suffix');
+    const indentEle = document.getElementById('indent');
     startBtn.onclick = function() {
       start();
     }
@@ -161,7 +166,7 @@
     const outputcodeMirror = CodeMirror(outputEle, {
       matchBrackets: true,
       lineNumbers: true,
-      smartIndent: true,
+      smartIndent: false,
       value: `type Result$0Type = {
   name: string
   age: number
@@ -177,7 +182,8 @@
         required: requiredEle.checked,
         semicolon: semicolonEle.checked,
         typePrefix: typePrefixEle.value,
-        typeSuffix: typeSuffixEle.value
+        typeSuffix: typeSuffixEle.value,
+        indent: indentEle.value
       });
       outputcodeMirror.setValue(result);
     }

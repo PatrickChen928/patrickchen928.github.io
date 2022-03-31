@@ -157,9 +157,20 @@
       autofocus: true,
       smartIndent: true,
       value:`{ 
-  name: "apha", 
-  age: 18, 
-  interest: [ 'swim', 'football', 22 ] 
+  // 这是一个名字
+  name: "bengbeng", 
+  age: 20, 
+  interest: [ 'swim', 'football', 22 ]
+  girlfriend: {
+  	name: "qiaqia",
+    age: 18,
+    "exboyfriend": [
+      {
+    	name: "uzzz",
+        age: 40
+      }
+    ]
+  }
 }`,
       mode: "text/typescript"
     });
@@ -167,24 +178,41 @@
       matchBrackets: true,
       lineNumbers: true,
       smartIndent: false,
-      value: `type Result$0Type = {
+      value: `type Exboyfriend$1Type = {
+  name: string
+  age: number
+};
+
+type Girlfriend$2Type = {
+  name: string
+  age: number
+  exboyfriend: Array< Exboyfriend$1Type >
+};
+
+type Result$0Type = {
   name: string
   age: number
   interest: Array< string | number >
+  girlfriend: Girlfriend$2Type
 }`,
       mode: "text/typescript"
     });
     function start() {
       const inputVal = inputCodeMirror.getValue();
-      const result = json2ts.json2ts(inputVal, {
-        spiltType: spiltTypeEle.checked,
-        parseArray: parseArrayEle.checked,
-        required: requiredEle.checked,
-        semicolon: semicolonEle.checked,
-        typePrefix: typePrefixEle.value,
-        typeSuffix: typeSuffixEle.value,
-        indent: indentEle.value
-      });
+      let result = '';
+      try {
+        result = json2ts.json2ts(inputVal, {
+          spiltType: spiltTypeEle.checked,
+          parseArray: parseArrayEle.checked,
+          required: requiredEle.checked,
+          semicolon: semicolonEle.checked,
+          typePrefix: typePrefixEle.value,
+          typeSuffix: typeSuffixEle.value,
+          indent: indentEle.value
+        });
+      } catch(e) {
+        result = e.message;
+      }
       outputcodeMirror.setValue(result);
     }
   </script>

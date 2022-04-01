@@ -27,7 +27,7 @@
     }
     .opt-box .start {
       margin-left: 30px;
-      width: 200px;
+      width: 180px;
       line-height: 36px;
       font-size: 14px;
       color: #fff;
@@ -81,6 +81,9 @@
       border: 1px solid rgb(39, 147, 236);
       border-radius: 4px;
     }
+    .form-input {
+      width: 100px;
+    }
     .CodeMirror {
         border: 1px solid #eee;
         height: auto;
@@ -106,25 +109,25 @@
     </label>
     <label for="required">
       <input type="checkbox" id="required" checked>
-      <span>required</span>
+      <span>Required</span>
     </label>
     <label for="semicolon">
       <input type="checkbox" id="semicolon">
-      <span>semicolon end</span>
+      <span>Semicolon End</span>
     </label>
     <div class="form-item">
-      <span>prefix</span>
-      <input type="text" id="prefix">
+      <span>Prefix:</span>
+      <input class="form-input" type="text" id="prefix">
     </div>
     <div class="form-item">
-      <span>suffix</span>
-      <input type="text" id="suffix" value="Type">
+      <span>Suffix:</span>
+      <input class="form-input" type="text" id="suffix" value="Type">
     </div>
     <div class="form-item">
-      <span>indent</span>
-      <input type="text" id="indent" value="2">
+      <span>Indent:</span>
+      <input class="form-input" type="text" id="indent" value="2">
     </div>
-    <button id="start" class="start">start</button>
+    <button id="start" class="start">Start</button>
   </div>
   <div class="box">
     <div class="content left-code">

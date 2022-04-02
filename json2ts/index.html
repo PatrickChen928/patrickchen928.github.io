@@ -85,6 +85,13 @@
       border: 1px solid rgb(39, 147, 236);
       border-radius: 4px;
     }
+    select {
+      padding: 0 6px;
+      font-size: 14px;
+      height: 28px;
+      border: 1px solid rgb(39, 147, 236);
+      border-radius: 4px;
+    }
     .form-input {
       width: 100px;
     }
@@ -131,6 +138,14 @@
       <span>Indent:</span>
       <input class="form-input" type="text" id="indent" value="2">
     </div>
+    <div class="form-item">
+      <span>Comment</span>
+      <select id="comment">
+        <option value="inline">inline</option>
+        <option value="false">false</option>
+        <option value="block">block</option>
+      </select>
+    </div>
     <button id="start" class="start">Start</button>
   </div>
   <div class="box">
@@ -154,6 +169,7 @@
     const typePrefixEle = document.getElementById('prefix');
     const typeSuffixEle = document.getElementById('suffix');
     const indentEle = document.getElementById('indent');
+    const commentEle = document.getElementById('comment');
     startBtn.onclick = function() {
       start();
     }
@@ -164,9 +180,9 @@
       autofocus: true,
       smartIndent: true,
       value:`{ 
-  // This is a name
-  name: "bengbeng", 
-  age: 20, 
+  // This is a name key
+  name: "bengbeng", // His name is bengbeng
+  age: 20, // This is his age
   interest: [ 'swim', 'football', 22 ]
   girlfriend: {
   	name: "qiaqia",
@@ -197,8 +213,8 @@ type Girlfriend$2Type = {
 };
 
 type Result$0Type = {
-  name: string
-  age: number
+  name: string // This is a name key; His name is bengbeng
+  age: number // This is his age
   interest: Array< string | number >
   girlfriend: Girlfriend$2Type
 }`,
@@ -215,7 +231,8 @@ type Result$0Type = {
           semicolon: semicolonEle.checked,
           typePrefix: typePrefixEle.value,
           typeSuffix: typeSuffixEle.value,
-          indent: indentEle.value
+          indent: indentEle.value,
+          comment: commentEle.value
         });
       } catch(e) {
         result = e.message;

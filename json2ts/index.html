@@ -110,8 +110,8 @@
 <body>
   <a class="top" href="https://github.com/ChpShy/json2ts" target="_blank">GitHub</a>
   <div class="opt-box">
-    <label for="spiltType">
-      <input type="checkbox" id="spiltType" checked>
+    <label for="splitType">
+      <input type="checkbox" id="splitType" checked>
       <span>Split Object</span>
     </label>
     <label for="parseArray">
@@ -162,7 +162,7 @@
     const startBtn = document.getElementById('start');
     const inputEle = document.getElementById('input');
     const outputEle = document.getElementById('output');
-    const spiltTypeEle = document.getElementById('spiltType');
+    const splitTypeEle = document.getElementById('splitType');
     const parseArrayEle = document.getElementById('parseArray');
     const requiredEle = document.getElementById('required');
     const semicolonEle = document.getElementById('semicolon');
@@ -225,7 +225,7 @@ type Result$0Type = {
       let result = '';
       try {
         result = json2ts.json2ts(inputVal, {
-          spiltType: spiltTypeEle.checked,
+          splitType: splitTypeEle.checked,
           parseArray: parseArrayEle.checked,
           required: requiredEle.checked,
           semicolon: semicolonEle.checked,

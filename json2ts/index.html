@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>json2ts</title>
   <link rel="stylesheet" href="../static/codemirror.css">
-  <script src="./0.1.1/index.umd.min.js"></script>
+  <script src="./0.1.3/index.umd.min.js"></script>
   <script src="../static/codemirror.js"></script>
   <script src="../static/javascript.js"></script>
   <style>
@@ -118,6 +118,10 @@
       <input type="checkbox" id="parseArray" checked>
       <span>Parse Array</span>
     </label>
+    <label for="optimizeArrayOptional">
+      <input type="checkbox" id="optimizeArrayOptional" checked>
+      <span>Optimize Array</span>
+    </label>
     <label for="required">
       <input type="checkbox" id="required" checked>
       <span>Required</span>
@@ -126,6 +130,13 @@
       <input type="checkbox" id="semicolon">
       <span>Semi</span>
     </label>
+    <div class="form-item">
+      <span>genType</span>
+      <select id="genType">
+        <option value="type">type</option>
+        <option value="interface">interface</option>
+      </select>
+    </div>
     <div class="form-item">
       <span>Prefix:</span>
       <input class="form-input" type="text" id="prefix">
@@ -170,6 +181,8 @@
     const typeSuffixEle = document.getElementById('suffix');
     const indentEle = document.getElementById('indent');
     const commentEle = document.getElementById('comment');
+    const optimizeArrayOptionalEle = document.getElementById('optimizeArrayOptional');
+    const genTypeEle = document.getElementById('genType');
     startBtn.onclick = function() {
       start();
     }
@@ -183,7 +196,7 @@
   // This is a name key
   name: "bengbeng", // His name is bengbeng
   age: 20, // This is his age
-  interest: [ 'swim', 'football', 22 ]
+  interest: [ 'swim', 'football', 22, {a: 1, b:2}, {a: 1} ]
   girlfriend: {
   	name: "qiaqia",
     age: 18,
@@ -201,22 +214,29 @@
       matchBrackets: true,
       lineNumbers: true,
       smartIndent: false,
-      value: `type Exboyfriend$1Type = {
+      optimizeArrayOptionalEle: true,
+      genType: 'interface',
+      value: `type Interest$1Type = {
+  a: number
+  b?: number
+}
+
+type Exboyfriend$2Type = {
   name: string
   age: number
 }
 
-type Girlfriend$2Type = {
+type Girlfriend$3Type = {
   name: string
   age: number
-  exboyfriend: Array< Exboyfriend$1Type >
+  exboyfriend: Array< Exboyfriend$2Type >
 }
 
 type Result$0Type = {
   name: string // This is a name key; His name is bengbeng
   age: number // This is his age
-  interest: Array< string | number >
-  girlfriend: Girlfriend$2Type
+  interest: Array< string | number | Interest$1Type >
+  girlfriend: Girlfriend$3Type
 }
 `,
       mode: "text/typescript"
@@ -233,7 +253,9 @@ type Result$0Type = {
           typePrefix: typePrefixEle.value,
           typeSuffix: typeSuffixEle.value,
           indent: indentEle.value,
-          comment: commentEle.value
+          comment: commentEle.value,
+          genType: genTypeEle.value,
+          optimizeArrayOptional: optimizeArrayOptionalEle.checked
         });
       } catch(e) {
         result = e.message;
